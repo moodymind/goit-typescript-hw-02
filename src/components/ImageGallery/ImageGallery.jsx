@@ -1,6 +1,6 @@
 import React from "react";
-import ImageCard from "./ImageCard";
-import "./ImageGallery.css";
+import ImageCard from "../ImageCard/ImageCard";
+import "./ImageGallery.modules.css";
 
 const ImageGallery = ({ images, onClick }) => {
   return (
