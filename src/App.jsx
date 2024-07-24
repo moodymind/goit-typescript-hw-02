@@ -54,8 +54,8 @@ const App = () => {
     <div>
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage message={error} />}
-      <ImageGallery images={images} onClick={setSelectedImage} />
       {loading && <Loader />}
+      <ImageGallery images={images} onClick={setSelectedImage} />
       {images.length > 0 && !loading && (
         <LoadMoreBtn onClick={loadMoreImages} />
       )}

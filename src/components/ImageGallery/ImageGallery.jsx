@@ -1,13 +1,13 @@
-import react from "react";
-import ImageCard from "../ImageCard/ImageCard";
-import "./ImageGallery.modules.css";
+import React from "react";
+import ImageCard from "./ImageCard";
+import "./ImageGallery.css";
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onClick }) => {
   return (
     <ul>
       {images.map((image) => (
         <li key={image.id}>
-          <ImageCard image={image} />
+          <ImageCard image={image} onClick={() => onClick(image)} />
         </li>
       ))}
     </ul>
