@@ -2,7 +2,7 @@ import React from "react";
 import { Oval } from "react-loader-spinner";
 import "./Loader.modules.css";
 
-const Loader = () => (
+const Loader: React.FC = () => (
   <div className="loader-container">
     <Oval
       height={80}

@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SearchBar from "./components/SearchBar/SearchBar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import Loader from "./components/Loader/Loader";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
+import Image from "../ImageCard/ImageCard.types";
+import { IsLoading, Error, SelectedImage } from "./App.types";
 
 const API_KEY = "4JcKFUSxydLuYXbtPAqLy8dLWcZKc6cL8k4m_L0SeN0";
 const BASE_URL = "https://api.unsplash.com/search/photos";
 
 const App = () => {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState<IsLoading>(false);
+  const [error, setError] = useState<Error>(null);
+  const [selectedImage, setSelectedImage] = useState<SelectedImage>(null);
 
   useEffect(() => {
     if (query === "") return;
@@ -41,7 +43,7 @@ const App = () => {
     fetchImages();
   }, [query, page]);
 
-  const handleSearch = (newQuery) => {
+  const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
@@ -52,7 +54,7 @@ const App = () => {
 
   return (
     <div>
-      <SearchBar onSubmit={handleSearch} />
+      <SearchBar onSubmit={handleSearch} query={query} setQuery={setQuery} />
       {error && <ErrorMessage message={error} />}
       {loading && <Loader />}
       <ImageGallery images={images} onClick={setSelectedImage} />
