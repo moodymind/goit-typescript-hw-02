@@ -7,7 +7,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import Image from "../ImageCard/ImageCard.types";
-import { IsLoading, Error, SelectedImage } from "./App.types";
+import { IsLoading, Error, SelectedImage, ApiResponse } from "./App.types";
 
 const API_KEY = "4JcKFUSxydLuYXbtPAqLy8dLWcZKc6cL8k4m_L0SeN0";
 const BASE_URL = "https://api.unsplash.com/search/photos";
@@ -25,7 +25,7 @@ const App = () => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(BASE_URL, {
+        const response = await axios.get<ApiResponse>(BASE_URL, {
           params: {
             query,
             page,
